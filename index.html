@@ -176,11 +176,9 @@
 <p>网上有人说在app模块下加入配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dexOptions &#123;</span><br><span class="line">incremental true</span><br><span class="line">javaMaxHeapSize &quot;4g&quot;</span><br><span class="line">preDexLibraries = false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然而我本身就加入以上配置的，在参考了<a href="https://www.cnblogs.com/hucn/p/3572384.html" target="_blank" rel="noopener">java.lang.OutOfMemoryError：GC overhead limit exceeded填坑心得</a>    这文章之后，就去项目根目录下的gradle.properties文件中修改配置，增加heap大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#开启并行编译：在项目根目录下面的 gradle.properties中设置</span><br><span class="line">org.gradle.parallel=true</span><br><span class="line"></span><br><span class="line">#开启编译守护进程：该进程在第一次启动后会一直存在，当你进行二次编译的时候，可以重用该进程。同样是在gradle.properties中设置。</span><br><span class="line">org.gradle.daemon=true</span><br><span class="line"></span><br><span class="line">#加大可用编译内存：这里之前我是-Xms512m -Xmx1024m -Xmx1536M</span><br><span class="line">org.gradle.jvmargs=-Xms1024m -Xmx1024m -Xmx1536M</span><br><span class="line"></span><br><span class="line">#关闭aapt2的编译</span><br><span class="line">android.enableAapt2=false</span><br></pre></td></tr></table></figure>
-<p>主要看<code>org.gradle.jvmargs=-Xms1024m -Xmx1024m -Xmx1536M</code><br>在改了之后重新打包就正常了，也没什么特别的处理，记录一下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">To run dex in process, the Gradle daemon needs a larger heap.</span><br><span class="line">It currently has 1536 MB.</span><br><span class="line">For faster builds, increase the maximum heap size for the Gradle daemon to at least 4608 MB (based on the dexOptions.javaMaxHeapSize = 4g).</span><br><span class="line">To do this set org.gradle.jvmargs=-Xmx4608M in the project gradle.properties.</span><br><span class="line">For more information see https://docs.gradle.org/current/userguide/build_environment.html</span><br></pre></td></tr></table></figure>
-<p>QQ：361561789<br>有事可以直接加Q联系</p>
-
+        
+          <a class="article-more-a" href="/2018/01/29/测试新建文章/#more">more >></a>
+        
       
 
       
@@ -255,14 +253,9 @@
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        
+          <a class="article-more-a" href="/2018/01/27/hello-world/#more">more >></a>
+        
       
 
       
